@@ -1,103 +1,161 @@
-import Image from "next/image";
+// src/app/page.tsx
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { MessageCircle, Zap, Shield, TrendingUp, Bot, Target, Clock, CheckCircle } from 'lucide-react'
 
-export default function Home() {
+const FeatureCard = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
+  <Card className="text-center hover:shadow-lg transition-shadow">
+    <CardHeader>
+      <div className="mx-auto bg-blue-100 text-blue-600 p-3 rounded-lg w-fit mb-2">
+        <Icon className="h-6 w-6" />
+      </div>
+      <CardTitle className="text-lg">{title}</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <CardDescription>{description}</CardDescription>
+    </CardContent>
+  </Card>
+)
+
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+      {/* Header */}
+      <header className="container mx-auto px-4 py-6">
+        <nav className="flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className="bg-blue-500 text-white p-2 rounded-lg">
+              <MessageCircle className="h-6 w-6" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-800">Replai</h1>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <Link href="/login">
+              <Button variant="outline">התחברות</Button>
+            </Link>
+            <Link href="/register">
+              <Button>הרשמה</Button>
+            </Link>
+          </div>
+        </nav>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      {/* Hero Section */}
+      <main className="container mx-auto px-4 py-12">
+        <div className="text-center max-w-4xl mx-auto">
+          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+            מענה חכם ללידים
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            הפוך כל פנייה באינסטגרם ובוואטסאפ ללקוח משלם עם תגובות AI 
+            מותאמות אישית לעסק שלך
+          </p>
+          
+          <div className="flex justify-center gap-4 mb-12">
+            <Link href="/register">
+              <Button size="lg" className="text-lg px-8 py-4">
+                התחל ניסיון חינם
+              </Button>
+            </Link>
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+              צפה בדמו
+            </Button>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+            <FeatureCard
+              icon={Bot}
+              title="AI חכם"
+              description="בינה מלאכותית מתקדמת שלומדת את הסגנון שלך ומתאימה תגובות אישיות"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <FeatureCard
+              icon={Target}
+              title="זיהוי קהל יעד"
+              description="זיהוי אוטומטי של סוגי לקוחות ותגובות מותאמות לכל קבוצה"
+            />
+            <FeatureCard
+              icon={Clock}
+              title="מענה מיידי"
+              description="מענה מיידי 24/7 לכל הפניות ללא איחורים או החמצות"
+            />
+            <FeatureCard
+              icon={TrendingUp}
+              title="שיפור המרות"
+              description="העלה את אחוזי ההמרה שלך עם תגובות מקצועיות ומותאמות"
+            />
+          </div>
+
+          {/* Benefits Section */}
+          <div className="mt-20">
+            <h3 className="text-3xl font-bold text-gray-900 mb-8">
+              למה לבחור ב-Replai?
+            </h3>
+            <div className="grid md:grid-cols-2 gap-8 text-right">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>התאמה מלאה לסגנון העסק שלך</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>זיהוי אוטומטי של מילות מפתח ונושאים חמים</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>הצעות תגובה חכמות עם אישור מראש</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>אינטגרציה חלקה עם אינסטגרם ווואטסאפ</span>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>אנליטיקה מתקדמת ודוחות מפורטים</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>תבניות תגובה מותאמות לכל קהל יעד</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>שליטה מלאה - אוטומטי, אישור או הצעה בלבד</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <span>תמיכה מלאה בעברית וכיוון כתיבה RTL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="mt-20 bg-white rounded-lg p-8 shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              מוכן להתחיל?
+            </h3>
+            <p className="text-gray-600 mb-6">
+              הצטרף אלפי עסקים שכבר משתמשים ב-Replai כדי להגדיל את המכירות
+            </p>
+            <Link href="/register">
+              <Button size="lg" className="text-lg px-8 py-4">
+                התחל ניסיון חינם של 14 יום
+              </Button>
+            </Link>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="border-t bg-white mt-20">
+        <div className="container mx-auto px-4 py-8 text-center text-gray-600">
+          <p>© 2024 Replai. כל הזכויות שמורות.</p>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
